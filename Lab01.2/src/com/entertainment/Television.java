@@ -47,6 +47,23 @@ public class Television {
         this.volume = volume;
     }
 
+    /*@Override
+    public boolean equals(Object obj) {
+        // same physical object => return true;
+        if (this == obj) return true;
+
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Television that = (Television) obj;
+        return getVolume() == that.getVolume() &&
+                Objects.equals(getBrand(), that.getBrand());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBrand(), getVolume());
+    }*/
+
     @Override
     public int hashCode(){
         // 'hash collision' when diff objects have same hashCode
@@ -63,7 +80,7 @@ public class Television {
         boolean result = false;
 
         // proceed if 'obj' is reference of Television object
-        if(obj instanceof Television) {
+        if(this.getClass() == obj.getClass()) {
             // downcast => to more specific type 'Television', for specific methods //
             Television other = (Television) obj;
 
