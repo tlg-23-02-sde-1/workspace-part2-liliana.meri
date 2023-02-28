@@ -4,6 +4,7 @@ import com.entertainment.Television;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 class TelevisionClient {
 
@@ -11,6 +12,8 @@ class TelevisionClient {
         // compare
         Television tvA = new Television("Sony", 50);
         Television tvB = new Television("LG", 52);
+        Television tvC = new Television("Samsung", 47);
+        Television tvD = new Television("LG", 52);
 
         // is tvA == tvB? (same physical object) No they're two separate objects
         System.out.println("tvA==tvB: " + (tvA == tvB)); // always false
@@ -23,12 +26,20 @@ class TelevisionClient {
         System.out.println(tvB.hashCode()); // hashCode = ??
 
         // create Set<Television>
-        Set<Television> tvs = new HashSet<>();
+        Set<Television> tvs = new TreeSet<>();
         tvs.add(tvA);
         tvs.add(tvB); // should be rejected as 'duplicate'
+        tvs.add(tvC);
+        tvs.add(tvD);
 
         // set size() should be 1
         System.out.println("The size of the Set is: " + tvs.size());
+
+        // sorted using TreeSet => natural order => brand
+        for (Television tv : tvs) {
+            System.out.println(tv);
+        }
+        System.out.println();
     }
 
 }
