@@ -2,6 +2,13 @@ package com.entertainment;
 
 import java.util.Objects;
 
+/*
+ * Natural order is defined by 'brand' (String) and volume (int) when tied on brand.
+ *
+ * To be 'consistent with equals', our sort key(s) must align with what was chosen
+ * for equals() and hashCode()
+ */
+
 public class Television implements Comparable<Television>{
     //fields
     private String brand;
@@ -91,9 +98,18 @@ public class Television implements Comparable<Television>{
         return result;
     }
 
+    /*
+     * Natural order is defined by 'brand' (String) and volume (int) when tied on brand.
+     * Since (String) is already Comparable, just delegate to its CompareTo() method
+     */
     @Override
     public int compareTo(Television other) {
-        return this.getBrand().compareTo(other.getBrand());
+        int result = this.getBrand().compareTo(other.getBrand()); // comparable
+
+        if (result == 0) { //tie on brand, break by volume
+            result = Integer.compare(this.getVolume(), other.getVolume()); // Comparator
+        }
+        return result;
     }
 
     // to String
