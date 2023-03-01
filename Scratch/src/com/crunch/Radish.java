@@ -51,7 +51,7 @@ class Radish implements Comparable<Radish> {
 
     @Override
     public int compareTo(Radish other) {
-        return Double.compare(this.getSize(), other.getSize());
+        return Double.compare(this.getSize(), other.getSize()); // using 'Comparator' double // external party
     }
 
     @Override
