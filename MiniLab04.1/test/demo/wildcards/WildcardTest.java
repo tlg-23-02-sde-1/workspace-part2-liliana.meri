@@ -37,8 +37,8 @@ public class WildcardTest {
     // sum() expects a Collection<Number> but I'm passing a Collection<Double>
     // that should be okay, right?
     
-    // double result = sum(doubles);
-    // assertEquals(5.92, result, .001);
+    //double result = sum(doubles);
+    //assertEquals(5.92, result, .001);
   }
   
   /*
