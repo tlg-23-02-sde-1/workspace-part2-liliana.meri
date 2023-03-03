@@ -51,24 +51,63 @@ public class EmployeeFactoryTest {
    *   assertEquals(SalariedEmployee.class, emp.getClass())
    */
   @Test
-  public void testCreateEmployeeSalaried() {
-    // TODO
+  public void createEmployee_shouldCreateInstanceOfSalariedEmployee_whenTypeIsSE() {
+    Employee emp = EmployeeFactory.createEmployee(seMap);
+    //assertTrue(emp instanceof SalariedEmployee);
+    assertEquals(SalariedEmployee.class, emp.getClass());
+    checkNameHireDate(emp);
+
+    // downcast 'emp'
+    SalariedEmployee semp = (SalariedEmployee) emp;
+    assertEquals("50000.0", semp.getSalary().toString());
+  }
+
+  private void checkNameHireDate(Employee emp) {
+    //check properties/fields
+    assertEquals("Jackie", emp.getName());
+    assertEquals("1990-08-24", emp.getHireDate().toString());
   }
   
   /**
    * TASK: verify that passing heMap into your factory returns a HourlyEmployee, with all properties set.
    */
   @Test
-  public void testCreateEmployeeHourly() {
-    // TODO
+  public void createEmployee_shouldReturnHourlyEmployee_whenTypeHE() {
+    Employee emp = EmployeeFactory.createEmployee(heMap);
+
+    assertEquals(HourlyEmployee.class, emp.getClass());
+
+    // check name, hireDate, rate, hours
+    checkNameHireDate(emp);
+
+    //downcast 'emp' to 'hemp'
+    HourlyEmployee hemp = (HourlyEmployee) emp;
+    assertEquals(50.0, hemp.getRate(), .001);
+    assertEquals(40.0, hemp.getHours(), .001);
   }
-  
+
+  @Test
+  public void createEmployee_shouldThrowIllegalArgumentException_invalidType_try_catch_fail() {
+    seMap.put("type", "INVALID-TYPE");
+
+    try {
+      EmployeeFactory.createEmployee(seMap); // should trigger the exception
+      fail("Should have thrown IllegalArgumentException");
+    }
+    catch (IllegalArgumentException e) {
+      assertEquals("Invalid type: INVALID-TYPE", e.getMessage());
+      }
+    }
   /**
    * TASK: verify that passing a map with an invalid "type" value results in IllegalArgumentException.
    * The only valid values for "type" are "HE" or "SE".
+   * throw IllegalArgumentException
    */
-  @Test
-  public void testCreateEmployeeInvalidTypeThrowsIllegalArgumentException() {
-    // TODO
+
+  @Test(expected=IllegalArgumentException.class) // no-try-catch needed
+  public void createEmployee_shouldThrowIllegalArgumentException_invalidType() {
+    seMap.put("type", "INVALID-TYPE");
+    EmployeeFactory.createEmployee(seMap); // should trigger the exception
   }
+
 }
