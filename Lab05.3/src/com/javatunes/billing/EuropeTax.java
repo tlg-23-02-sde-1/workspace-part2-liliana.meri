@@ -15,6 +15,23 @@ package com.javatunes.billing;
  *  
  * TODO: implement this algorithm.
  */
-public class EuropeTax {
+public class EuropeTax implements TaxCalculator{
+    private static final double VAT_RATE = 0.17; // everyone get VAT TAXED // must be shared
+    private static final double LUXURY_RATE = 0.25;
+    private static final double LUXURY_THRESHOLD = 100.0;
 
+
+
+    @Override
+    public double taxAmount (double taxable) {
+        double vat = taxable * VAT_RATE; // amount * rate
+        double luxury = 0.0;
+
+        if (taxable > LUXURY_THRESHOLD) {
+            luxury = (taxable - LUXURY_THRESHOLD) * LUXURY_RATE;
+        }
+
+        return vat + luxury;
+
+    }
 }
