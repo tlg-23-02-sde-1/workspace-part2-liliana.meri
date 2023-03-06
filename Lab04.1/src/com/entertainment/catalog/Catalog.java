@@ -28,7 +28,15 @@ public class Catalog {
    * A no-matches result should be an empty collection (not null).
    */
   public static Collection<Television> findByBrand(String brand) {
-    return null;
+    Collection<Television> result = new ArrayList<>();
+
+    // for each, check if brand = brand passed, add to arrayList
+    for (Television tv : catalog) {
+      if (tv.getBrand().equals(brand)) {
+        result.add(tv);
+      }
+    }
+    return result;
   }
   
   /**
@@ -36,8 +44,15 @@ public class Catalog {
    * with a corresponding collection of matching Televisions for that brand.
    * A no-brands-passed result should be an empty map (not null).
    */
+
   public static Map<String,Collection<Television>> findByBrands(String... brands) {
-    return null;
+    Map<String, Collection<Television>> result = new HashMap<>();
+
+     for ( String brand : brands) { // for each brand in that tv
+         Collection<Television> tvs = findByBrand(brand);
+         result.put(brand, tvs);
+     }
+    return result;
   }
 
   /**
@@ -51,8 +66,10 @@ public class Catalog {
    * You should explore the Javadoc for the java.util.Collections *class*.
    *  This is an all-static utility class, not the java.util.Collection interface.
    */
+
+  // return read-only collection
   public static Collection<Television> getInventory() {
-    return catalog;
+    return Collections.unmodifiableCollection(catalog);
   }
 
   /*
@@ -70,7 +87,7 @@ public class Catalog {
     catalog.add(new Television("Hitachi", 40));
     catalog.add(new Television("Zenith",  46));
     catalog.add(new Television("RCA",     50));
-    catalog.add(new Television("Sony",    94));
+    catalog.add(new Television("Sony",    94)); // loudest
     catalog.add(new Television("RCA",     50));
     catalog.add(new Television("Sony",    50));
     catalog.add(new Television("Hitachi", 50));
