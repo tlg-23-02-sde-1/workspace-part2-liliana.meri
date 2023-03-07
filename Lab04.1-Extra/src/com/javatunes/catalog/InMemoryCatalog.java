@@ -78,7 +78,7 @@ public class InMemoryCatalog implements Catalog {
         return result;
     }
 
-    @Override // get collection size
+    @Override // get collection size => too simple to test/fail
     public int size() {
         return catalogData.size();
     }
@@ -115,10 +115,11 @@ public class InMemoryCatalog implements Catalog {
      * TASK: find all MusicItems where title is same as artist.
      * For example, Madonna's first album is simply titled, "Madonna."
      */
-    public Collection<MusicItem> findSelfTitled(String name) {
+    public Collection<MusicItem> findSelfTitled() {
         Collection<MusicItem> result = new ArrayList<>();
+
         for(MusicItem item : catalogData) {
-            if(item.getTitle().equalsIgnoreCase(name)){
+            if(item.getTitle().equals(item.getArtist())){
                 result.add(item);
             }
         }
@@ -175,13 +176,14 @@ public class InMemoryCatalog implements Catalog {
      * This is a yes/no answer.
      */
     public boolean isAtLeast(double minPrice) {
-       boolean result = false;
-       for (MusicItem item : catalogData) {
+        int counter = 0;
+
+        for (MusicItem item : catalogData) {
            if(item.getPrice() >= minPrice){
-               result = true;
+                counter++;
            }
        }
-       return result;
+       return counter == catalogData.size();
     }
 
 

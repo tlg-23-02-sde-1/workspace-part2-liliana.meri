@@ -6,7 +6,7 @@
  * Copyright LearningPatterns Inc.
  */
 
-package com.javatunes.catalog.test;
+package com.javatunes.catalog;
 
 import com.javatunes.catalog.Catalog;
 import com.javatunes.catalog.InMemoryCatalog;
@@ -15,7 +15,7 @@ import com.javatunes.catalog.MusicItem;
 
 import java.util.Collection;
 
-class InMemoryCatalogTest {
+class InMemoryCatalogTestMain {
 
     /*
      * One by one, complete each test method below, and then "activate" it by
@@ -24,16 +24,16 @@ class InMemoryCatalogTest {
      * Once you see that the test method verifies the corresponding business method
      * works correctly, you can comment out that call in main() and proceed to the next one.
      */
-    public static void main(String[] args) { //
-        testFindById();
-        testFindByKeyword();
-        testFindByCategory();
-        testSize();
-        testGetAll();
-        
-        testFindSelfTitled();
-        testFindRockBottom();
-        testGenreCount();
+    public static void main(String[] args) {
+//        testFindById();
+//        testFindByKeyword();
+//        testFindByCategory();
+//        testSize();
+//        testGetAll();
+//
+//        testFindSelfTitled();
+//        testFindRockBottom();
+//        testGenreCount();
         testIsAtLeast();
     }
 
@@ -76,6 +76,7 @@ class InMemoryCatalogTest {
         System.out.println();
     }
 
+
     private static void testSize() {
         InMemoryCatalog catalog = new InMemoryCatalog();
         System.out.println("Number of Music items: " + catalog.size()); // size of catalog
@@ -91,7 +92,7 @@ class InMemoryCatalogTest {
     private static void testFindSelfTitled() {
         InMemoryCatalog catalog = new InMemoryCatalog();
 
-        Collection<MusicItem> item = catalog.findSelfTitled("Seal");
+        Collection<MusicItem> item = catalog.findSelfTitled();
         System.out.println("Self-Titled: " + item);
     }
 
@@ -103,7 +104,9 @@ class InMemoryCatalogTest {
 
     private static void testIsAtLeast() {
         InMemoryCatalog catalog = new InMemoryCatalog();
-        System.out.println(catalog.isAtLeast(10.00));
+        System.out.println(catalog.isAtLeast(9.96));
+        System.out.println(catalog.isAtLeast(9.95));
+
     }
 
 }
