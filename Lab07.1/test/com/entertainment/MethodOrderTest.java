@@ -8,6 +8,7 @@
  */
 package com.entertainment;
 
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,6 +18,8 @@ import org.junit.runners.MethodSorters;
 /**
  * TODO: use an annotation(s) in this class to apply some control over the order of test execution.
  */
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MethodOrderTest {
   
   @Test
