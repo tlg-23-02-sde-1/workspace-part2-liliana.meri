@@ -38,7 +38,7 @@ import java.util.*;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-class Board {
+public class Board {
     private final Map<Integer,String> studentIdMap = loadStudentIdMap();
     private final Map<Integer,DuckRacer> racerMap  = new TreeMap<>();
 
@@ -60,19 +60,32 @@ class Board {
         racer.win(reward); // either way it needs to 'win'
     }
 
-    // TODO: render the data "pretty", i.e. like we see in class.
-    // includes column headers, spacing etc.
-
-
-
     // gets racerMap Value from <K,V>
     public void show() {
-        Collection<DuckRacer> allRacers = racerMap.values(); // return Collection<V>
+        if (racerMap.isEmpty()) {
+            System.out.println("There are currently No Winners in the board");
+        }
+        else {
+            System.out.println("             DUCK RACE RESULTS                 ");
+            System.out.println("================================================\n");
+            System.out.println("id        name           wins          rewards");
+            System.out.println("--        ----          -----          --------");
 
-        for (DuckRacer racer: allRacers) {
-            System.out.println(racer); // toString() automatic call
+
+            Collection<DuckRacer> allRacers = racerMap.values(); // return Collection<V>
+
+            for (DuckRacer racer: allRacers) {
+                //System.out.println(racer); // toString() automatic call
+                System.out.printf("%s         %s            %s            %s\n",
+                        racer.getId(), racer.getName(), racer.getWins(), racer.getRewards());
+
+            }
         }
     }
+
+    /*
+    * create method that get max id, Map size()
+     */
 
 
     // TESTING ONLY
